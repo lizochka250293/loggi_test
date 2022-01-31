@@ -1,10 +1,10 @@
 import datetime
 def logger(func):
-    def arguments(arg1, arg2):
-        print(datetime.now())
+    def arguments(*args, **kwargs):
+        s = datetime.now()
 
-        func()
-    return arguments(arg1, arg2)
+        print(s, func._name_)
+    return func(*args, **kwargs)
 @ logger
 def suma(a, b):
     if a>0 and b >0:
