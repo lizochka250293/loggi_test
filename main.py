@@ -1,19 +1,22 @@
 import datetime
 def logger(func):
-    def arguments(*args, **kwargs):
+    def inner(*args, **kwargs):
         s = datetime.now()
-
-        print(s, func._name_)
-    return func(*args, **kwargs)
+        print(s)
+        func(*args, **kwargs)
+    inner._name_ = func._name_
+    return inner
 @ logger
 def suma(a, b):
     if a>0 and b >0:
+        print(a, b)
         return a+b
+        print(suma._name_)
     elif a<0 and b<0:
+        print(a, b)
         return a-b
+        print(suma._name_)
     else:
+        print(a, b)
         return 0
-
-a = 3
-b = 7
-suma = logger(suma)
+        print(suma._name_)
