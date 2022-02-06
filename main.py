@@ -1,22 +1,28 @@
 import datetime
+
 def logger(func):
     def inner(*args, **kwargs):
-        s = datetime.now()
+        s = datetime.datetime.now()
         print(s)
+        print(func.__name__)
+        print(args)
+        print(kwargs)
         func(*args, **kwargs)
-    inner._name_ = func._name_
+
     return inner
-@ logger
+
+
+@logger
 def suma(a, b):
-    if a>0 and b >0:
-        print(a, b)
-        return a+b
-        print(suma._name_)
-    elif a<0 and b<0:
-        print(a, b)
-        return a-b
-        print(suma._name_)
+    if a > 0 and b > 0:
+        return a + b
+
+    elif a < 0 and b < 0:
+        return a - b
+
     else:
-        print(a, b)
         return 0
-        print(suma._name_)
+
+
+suma(3, 5)
+suma(a=4, b=5)
